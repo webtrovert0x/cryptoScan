@@ -1,0 +1,5 @@
+{
+  "name": "CryptoScan Live",
+  "description": "Real-time cryptocurrency dashboard with CoinGecko integration, watchlist functionality, and market insights.",
+  "requestFramePermissions": []
+}
