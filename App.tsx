@@ -61,12 +61,16 @@ const App: React.FC = () => {
     useEffect(() => {
         const loadData = async () => {
             setLoading(true);
-            const [marketData, global] = await Promise.all([
-                fetchMarketCoins(page),
-                fetchGlobalData()
-            ]);
-            setCoins(marketData);
-            setGlobalData(global);
+            try {
+                const [marketData, global] = await Promise.all([
+                    fetchMarketCoins(page),
+                    fetchGlobalData()
+                ]);
+                setCoins(marketData);
+                setGlobalData(global);
+            } catch (e) {
+                console.error("Failed to load data", e);
+            }
             setLoading(false);
         };
         loadData();
@@ -204,7 +208,7 @@ const App: React.FC = () => {
                             onClick={() => setFilter('watchlist')}
                             className={`flex items-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors border border-transparent ${filter === 'watchlist' ? 'bg-primary text-black font-bold' : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white hover:border-white/10'}`}
                         >
-                            <span className="material-symbols-outlined text-[18px] fill-current">star</span>
+                            <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                             Watchlist ({watchlist.size})
                         </button>
                     </div>
@@ -260,7 +264,12 @@ const App: React.FC = () => {
                                                         onClick={(e) => toggleWatchlist(coin.id, e)}
                                                         className={`hover:scale-110 transition-transform ${isWatchlisted ? 'text-yellow-400' : 'text-gray-600 hover:text-yellow-400'}`}
                                                     >
-                                                        <span className={`material-symbols-outlined text-[20px] ${isWatchlisted ? 'fill-current' : ''}`}>star</span>
+                                                        <span 
+                                                            className="material-symbols-outlined text-[20px]"
+                                                            style={{ fontVariationSettings: isWatchlisted ? "'FILL' 1" : "'FILL' 0" }}
+                                                        >
+                                                            star
+                                                        </span>
                                                     </button>
                                                 </td>
                                                 <td className="px-6 py-4 text-center font-medium text-gray-500">{coin.market_cap_rank ?? '-'}</td>
