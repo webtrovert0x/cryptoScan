@@ -57,7 +57,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSelect }) => {
             </div>
             <input 
                 type="text" 
-                className="peer block w-full rounded-xl border border-white/10 bg-glass-input py-3 pl-12 pr-4 text-sm text-white placeholder-gray-500 shadow-sm focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                className="peer block w-full rounded-xl border border-white/10 bg-black/40 backdrop-blur-md focus:bg-black py-3 pl-12 pr-4 text-sm text-white placeholder-gray-500 shadow-sm focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                 placeholder="Search coins (e.g. BTC, Pepe)"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -65,7 +65,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSelect }) => {
             />
             
             {/* Dropdown */}
-            <div className={`absolute top-full mt-2 left-0 right-0 bg-[#0f1920] border border-white/10 rounded-xl shadow-2xl backdrop-blur-xl overflow-hidden transition-all duration-200 ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'}`}>
+            <div className={`absolute top-full mt-2 left-0 right-0 bg-black border border-white/10 rounded-xl shadow-2xl backdrop-blur-xl overflow-hidden transition-all duration-200 ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'}`}>
                 {results.length > 0 ? (
                     <div className="p-2">
                         <div className="text-[10px] uppercase font-bold text-gray-500 px-3 py-2">Best Matches</div>
@@ -73,7 +73,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSelect }) => {
                             <button 
                                 key={coin.id}
                                 onClick={() => handleSelect(coin.id)}
-                                className="flex w-full items-center gap-3 p-3 hover:bg-white/5 rounded-lg transition-colors group/item text-left"
+                                className="flex w-full items-center gap-3 p-3 hover:bg-white/10 rounded-lg transition-colors group/item text-left"
                             >
                                 <div className="h-8 w-8 rounded-full bg-white/5 flex items-center justify-center overflow-hidden">
                                     <img src={coin.thumb} alt={coin.symbol} className="w-full h-full object-cover" />
